@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theboline - Tienda Online</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/cliente.css">
+</head>
+<body>
+    <div class="client-container">
+        <!-- Header -->
+        <header class="client-header">
+            <div class="header-content">
+                <div class="logo">
+                    <h1>Theboline</h1>
+                    <span>Tienda de Streetwear</span>
+                </div>
+                <div class="search-bar">
+                    <input type="text" placeholder="Buscar productos..." id="searchInput">
+                    <button onclick="searchProducts()">🔍</button>
+                </div>
+                <div class="header-actions">
+                    <button class="cart-btn" onclick="showSection('carrito')">
+                        🛒 Carrito (<span id="cartCount">0</span>)
+                    </button>
+                    <div class="user-menu">
+                        <span>Hola, Cliente</span>
+                        <button onclick="logout()" class="logout-btn">Cerrar Sesión</button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="client-nav">
+            <ul>
+                <li><a href="#" onclick="showSection('catalogo')" class="nav-link active">Catálogo</a></li>
+                <li><a href="#" onclick="showSection('carrito')" class="nav-link">Carrito</a></li>
+                <li><a href="#" onclick="showSection('perfil')" class="nav-link">Mi Perfil</a></li>
+                <li><a href="#" onclick="showSection('historial')" class="nav-link">Mis Compras</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="client-main">
+            <!-- Catálogo Section -->
+            <section id="catalogo" class="client-section active">
+                <div class="section-header">
+                    <h2>Catálogo de Productos</h2>
+                    <div class="filters">
+                        <select id="categoryFilter" onchange="filterProductsByCategory()">
+                            <option value="todas">Todas las categorías</option>
+                            <option value="Zapatillas">Zapatillas</option>
+                            <option value="Ropa">Ropa</option>
+                            <option value="Accesorios">Accesorios</option>
+                        </select>
+                        <select id="priceFilter" onchange="filterProductsByPrice()">
+                            <option value="todos">Todos los precios</option>
+                            <option value="0-50000">Hasta $50.000</option>
+                            <option value="50000-100000">$50.000 - $100.000</option>
+                            <option value="100000-200000">$100.000 - $200.000</option>
+                            <option value="200000+">Más de $200.000</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <!-- Productos Destacados en Promoción -->
+                <div class="featured-section">
+                    <h3>🔥 Productos en Promoción</h3>
+                    <div id="featuredProducts">
+                        <!-- Los productos destacados se cargarán aquí -->
+                    </div>
+                </div>
+                
+                <div class="products-catalog" id="productsCatalog">
+                    <!-- Los productos se cargarán dinámicamente -->
+                </div>
+            </section>
+
+            <!-- Carrito Section -->
+            <section id="carrito" class="client-section">
+                <h2>Carrito de Compras</h2>
+                <div class="cart-container">
+                    <div class="cart-items" id="cartItems">
+                        <!-- Los productos del carrito se cargarán aquí -->
+                    </div>
+                    <div class="cart-summary">
+                        <div class="promo-code-section">
+                            <h4>Código de Promoción</h4>
+                            <div class="promo-input-group">
+                                <input type="text" id="promoCodeInput" placeholder="Ingrese código de promoción" maxlength="20">
+                                <button class="apply-promo-btn" onclick="applyPromotionCode()">Aplicar</button>
+                            </div>
+                            <div id="appliedPromotion" class="applied-promotion" style="display: none;">
+                                <span id="promoDescription"></span>
+                                <button class="remove-promo-btn" onclick="removePromotion()">×</button>
+                            </div>
+                        </div>
+                        <div class="summary-item">
+                            <span>Subtotal:</span>
+                            <span id="subtotal">$0</span>
+                        </div>
+                        <div class="summary-item discount-item" style="display: none;">
+                            <span>Descuento:</span>
+                            <span id="discount" class="discount-amount">$0</span>
+                        </div>
+                        <div class="summary-item">
+                            <span>Envío:</span>
+                            <span id="shipping">$5.990</span>
+                        </div>
+                        <div class="summary-item total">
+                            <span>Total:</span>
+                            <span id="total">$5.990</span>
+                        </div>
+                        <button class="checkout-btn" onclick="abrirCheckout()">Proceder al Pago</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Perfil Section -->
+            <section id="perfil" class="client-section">
+                <h2>Mi Perfil</h2>
+                <div class="profile-container">
+                    <div class="profile-info">
+                        <h3>Información Personal</h3>
+                        <div class="info-item">
+                            <label>Nombre:</label>
+                            <span>Juan Pérez</span>
+                        </div>
+                        <div class="info-item">
+                            <label>Email:</label>
+                            <span>juan.perez@email.com</span>
+                        </div>
+                        <div class="info-item">
+                            <label>Teléfono:</label>
+                            <span>+56 9 1234 5678</span>
+                        </div>
+                        <div class="info-item">
+                            <label>Dirección:</label>
+                            <span>Av. Principal 123, Santiago, Chile</span>
+                        </div>
+                        <button class="edit-profile-btn" onclick="editProfile()">Editar Perfil</button>
+                    </div>
+                    <div class="profile-stats">
+                        <h3>Estadísticas</h3>
+                        <div class="stat-item">
+                            <span class="stat-number">12</span>
+                            <span class="stat-label">Compras Realizadas</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">9.250 </span>
+                            <span class="stat-label">Bolinepoints acumulados</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">Cliente VIP</span>
+                            <span class="stat-label">Nivel</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Historial Section -->
+            <section id="historial" class="client-section">
+                <h2>Historial de Compras</h2>
+                <div class="orders-container" id="ordersContainer">
+                    <!-- Las órdenes se cargarán dinámicamente -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modal para Proceso de Pago -->
+    <div id="checkoutModal">
+        <div class="checkout-modal-content">
+            <div class="checkout-modal-header">
+                <h2>Proceso de Compra</h2>
+                <button class="checkout-close-btn" onclick="cerrarCheckout()">&times;</button>
+            </div>
+            <div class="checkout-modal-body">
+            
+            <!-- Step indicators -->
+            <div class="checkout-steps">
+                <div class="checkout-step-item active" id="checkoutStep1">
+                    <span class="checkout-step-number">1</span>
+                    <span class="checkout-step-label">Datos</span>
+                </div>
+                <div class="checkout-step-separator"></div>
+                <div class="checkout-step-item" id="checkoutStep2">
+                    <span class="checkout-step-number">2</span>
+                    <span class="checkout-step-label">Pago</span>
+                </div>
+                <div class="checkout-step-separator"></div>
+                <div class="checkout-step-item" id="checkoutStep3">
+                    <span class="checkout-step-number">3</span>
+                    <span class="checkout-step-label">Boleta</span>
+                </div>
+            </div>
+
+            <!-- Step 1: Delivery Information -->
+            <div id="paymentStep1" class="payment-step active">
+                <h2>Información de Entrega</h2>
+                <form id="checkoutForm" class="checkout-form">
+                    <div class="checkout-form-group">
+                        <label>Nombre Completo:</label>
+                        <input type="text" id="customerName" required placeholder="Juan Pérez">
+                    </div>
+                    <div class="checkout-form-group">
+                        <label>RUT:</label>
+                        <input type="text" id="customerRUT" required placeholder="12.345.678-9">
+                    </div>
+                    <div class="checkout-form-group">
+                        <label>Teléfono:</label>
+                        <input type="tel" id="customerPhone" required placeholder="+56 9 1234 5678">
+                    </div>
+                    <div class="checkout-form-group">
+                        <label>Email:</label>
+                        <input type="email" id="customerEmail" required placeholder="juan@email.com">
+                    </div>
+                    <div class="checkout-form-group full-width">
+                        <label>Dirección de Entrega:</label>
+                        <textarea id="deliveryAddress" required placeholder="Calle Ejemplo 123, Depto 4B, Comuna, Ciudad" rows="3"></textarea>
+                    </div>
+                    <div class="checkout-form-group">
+                        <label>Método de Entrega:</label>
+                        <select id="deliveryMethod" required onchange="updateDeliveryInfo()">
+                            <option value="">Seleccionar método</option>
+                            <option value="delivery">Entrega a Domicilio ($5.990)</option>
+                            <option value="pickup">Retiro en Tienda (Gratis)</option>
+                        </select>
+                    </div>
+                </form>
+                <div class="checkout-modal-footer">
+                    <button type="button" class="checkout-btn checkout-btn-secondary" onclick="cerrarCheckout()">Cancelar</button>
+                    <button type="button" class="checkout-btn checkout-btn-primary" onclick="continuarPagoCliente()">Continuar con Pago</button>
+                </div>
+            </div>
+
+            <!-- Step 2: Payment Method -->
+            <div id="paymentStep2" class="payment-step">
+                <h2>Seleccionar Método de Pago</h2>
+                <div class="checkout-summary">
+                    <h3>Resumen del Pedido</h3>
+                    <div id="summaryItemsCliente">
+                        <!-- Items del carrito se mostrarán aquí -->
+                    </div>
+                    <div class="checkout-summary-item">
+                        <span>Subtotal:</span>
+                        <span id="summarySubtotalCliente">$0</span>
+                    </div>
+                    <div class="checkout-summary-item checkout-summary-discount" style="display: none;">
+                        <span>Descuento:</span>
+                        <span id="summaryDiscountCliente">$0</span>
+                    </div>
+                    <div class="checkout-summary-item">
+                        <span>Envío:</span>
+                        <span id="summaryShippingCliente">$0</span>
+                    </div>
+                    <div class="checkout-summary-item">
+                        <span><strong>Total:</strong></span>
+                        <span id="summaryTotalCliente"><strong>$0</strong></span>
+                    </div>
+                </div>
+                
+                <div class="checkout-payment-methods">
+                    <h3>Método de Pago</h3>
+                    <div class="checkout-payment-method" onclick="seleccionarMetodoPagoCliente('Efectivo contra entrega')">
+                        <i>💵</i>
+                        <h4>Efectivo</h4>
+                        <p>Pago contra entrega</p>
+                    </div>
+                    <div class="checkout-payment-method" onclick="seleccionarMetodoPagoCliente('Tarjeta de Débito')">
+                        <i>💳</i>
+                        <h4>Tarjeta de Débito</h4>
+                        <p>Pago con RedCompra</p>
+                    </div>
+                    <div class="checkout-payment-method" onclick="seleccionarMetodoPagoCliente('Tarjeta de Crédito')">
+                        <i>💎</i>
+                        <h4>Tarjeta de Crédito</h4>
+                        <p>Visa, MasterCard</p>
+                    </div>
+                    <div class="checkout-payment-method" onclick="seleccionarMetodoPagoCliente('Transferencia Bancaria')">
+                        <i>🏦</i>
+                        <h4>Transferencia</h4>
+                        <p>Transferencia bancaria</p>
+                    </div>
+                </div>
+                <div class="checkout-modal-footer">
+                    <button type="button" class="checkout-btn checkout-btn-secondary" onclick="regresarPaso1Cliente()">Regresar</button>
+                    <button type="button" class="checkout-btn checkout-btn-primary" id="processOrderBtn" onclick="procesarPedidoCliente()" disabled>Procesar Pedido</button>
+                </div>
+            </div>
+
+            <!-- Step 3: Receipt -->
+            <div id="paymentStep3" class="payment-step">
+                <h2>Boleta de Compra</h2>
+                <div class="checkout-receipt">
+                    <div class="checkout-receipt-header">
+                        <h3>THEBOLINE</h3>
+                        <p>Tienda de Moda Online</p>
+                        <p>www.theboline.cl</p>
+                        <p>contacto@theboline.cl</p>
+                    </div>
+                    
+                    <div class="checkout-receipt-info">
+                        <div class="checkout-receipt-section">
+                            <h4>BOLETA DE COMPRA ONLINE</h4>
+                            <p><strong>Nº Pedido:</strong> <span id="receiptOrderId"></span></p>
+                            <p><strong>Fecha:</strong> <span id="receiptOrderDate"></span></p>
+                            <p><strong>Hora:</strong> <span id="receiptOrderTime"></span></p>
+                        </div>
+                        
+                        <div class="checkout-receipt-section">
+                            <h4>CLIENTE</h4>
+                            <p><strong>Nombre:</strong> <span id="receiptCustomerName"></span></p>
+                            <p><strong>RUT:</strong> <span id="receiptCustomerRUT"></span></p>
+                            <p><strong>Email:</strong> <span id="receiptCustomerEmail"></span></p>
+                            <p><strong>Teléfono:</strong> <span id="receiptCustomerPhone"></span></p>
+                        </div>
+                    </div>
+                    
+                    <div class="checkout-receipt-section">
+                        <h4>INFORMACIÓN DE ENTREGA</h4>
+                        <p><strong>Método:</strong> <span id="receiptDeliveryMethod"></span></p>
+                        <p><strong>Dirección:</strong> <span id="receiptDeliveryAddress"></span></p>
+                    </div>
+                    
+                    <div class="checkout-receipt-items">
+                        <h4>PRODUCTOS</h4>
+                        <div id="receiptOrderItems">
+                            <!-- Items se cargarán dinámicamente -->
+                        </div>
+                    </div>
+                    
+                    <div class="checkout-receipt-totals">
+                        <div class="checkout-receipt-total-item">
+                            <span>Subtotal:</span>
+                            <span id="receiptOrderSubtotal"></span>
+                        </div>
+                        <div class="checkout-receipt-total-item checkout-receipt-discount" style="display: none;">
+                            <span>Descuento:</span>
+                            <span id="receiptOrderDiscount"></span>
+                        </div>
+                        <div class="checkout-receipt-total-item">
+                            <span>Envío:</span>
+                            <span id="receiptOrderShipping"></span>
+                        </div>
+                        <div class="checkout-receipt-total-item final">
+                            <span><strong>Total:</strong></span>
+                            <span id="receiptOrderTotal"><strong></strong></span>
+                        </div>
+                        <div class="checkout-receipt-total-item">
+                            <span><strong>Método de Pago:</strong></span>
+                            <span id="receiptPaymentMethod"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="checkout-receipt-footer">
+                        <p>¡Gracias por tu compra!</p>
+                        <p>Recibirás un email de confirmación</p>
+                        <p>Tiempo estimado de entrega: 2-3 días hábiles</p>
+                    </div>
+                </div>
+                
+                <div class="checkout-modal-footer">
+                    <button type="button" class="checkout-btn checkout-btn-secondary" onclick="imprimirBoletaCliente()">🖨️ Imprimir</button>
+                    <button type="button" class="checkout-btn checkout-btn-info" onclick="descargarBoletaCliente()">📄 Descargar</button>
+                    <button type="button" class="checkout-btn checkout-btn-success" onclick="finalizarCompraCliente()">✅ Finalizar Compra</button>
+                </div>
+            </div>
+            
+            </div>
+        </div>
+    </div>
+
+    <script src="js/common.js"></script>
+    <script src="js/cliente.js"></script>
+</body>
+</html>

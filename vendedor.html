@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theboline - Panel Vendedor</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/vendedor.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Header -->
+        <header class="header">
+            <h1>Theboline - Panel Vendedor</h1>
+            <div class="user-info">
+                <span>Bienvenido, Vendedor</span>
+                <button onclick="logout()" class="logout-btn">Cerrar Sesión</button>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="sidebar">
+            <ul>
+                <li><a href="#" onclick="showSection('productos')" class="nav-link active">Catálogo</a></li>
+                <li><a href="#" onclick="showSection('ventas')" class="nav-link">Gestión de Ventas</a></li>
+                <li><a href="#" onclick="showSection('perfil')" class="nav-link">Mi Perfil</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Ventas Section -->
+            <section id="ventas" class="content-section">
+                <h2>Gestión de Ventas</h2>
+                <div class="section-controls">
+                    <button class="btn btn-primary" onclick="openSaleModal()">Nueva Venta</button>
+                    <select class="filter-select">
+                        <option>Todas las ventas</option>
+                        <option>Completadas</option>
+                        <option>Pendientes</option>
+                        <option>Canceladas</option>
+                    </select>
+                    <input type="search" placeholder="Buscar por cliente..." class="search-input">
+                </div>
+
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID Venta</th>
+                                <th>Cliente</th>
+                                <th>Fecha</th>
+                                <th>Total</th>
+                                <th>Estado</th>
+                                <th>Comisión</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>#VT001</td>
+                                <td>Juan Pérez</td>
+                                <td>08/07/2025</td>
+                                <td>$1,250</td>
+                                <td><span class="status active">Completada</span></td>
+                                <td>$62.50</td>
+                                <td>
+                                    <button class="btn btn-small">Ver</button>
+                                    <button class="btn btn-small">Editar</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#VT002</td>
+                                <td>María García</td>
+                                <td>07/07/2025</td>
+                                <td>$890</td>
+                                <td><span class="status active">Completada</span></td>
+                                <td>$44.50</td>
+                                <td>
+                                    <button class="btn btn-small">Ver</button>
+                                    <button class="btn btn-small">Editar</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#VT003</td>
+                                <td>Carlos López</td>
+                                <td>07/07/2025</td>
+                                <td>$2,100</td>
+                                <td><span class="status pending">Pendiente</span></td>
+                                <td>$105.00</td>
+                                <td>
+                                    <button class="btn btn-small">Ver</button>
+                                    <button class="btn btn-small">Editar</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Productos Section -->
+            <section id="productos" class="content-section active">
+                <h2>Catálogo de Productos</h2>
+                <div class="section-controls">
+                    <select class="filter-select">
+                        <option>Todas las categorías</option>
+                        <option>Zapatillas</option>
+                        <option>Ropa</option>
+                        <option>Accesorios</option>
+                    </select>
+                    <input type="search" placeholder="Buscar productos..." class="search-input">
+                </div>
+
+                <div class="products-grid" id="sellerProductsGrid">
+                    <!-- Los productos se cargarán dinámicamente desde la carpeta productos -->
+                </div>
+            </section>
+
+            <!-- Comisiones Section -->
+            <!-- Perfil Section -->
+            <section id="perfil" class="content-section">
+                <h2>Mi Perfil</h2>
+                <div class="profile-container">
+                    <div class="profile-info">
+                        <div class="profile-avatar">
+                            <img src="https://via.placeholder.com/120x120" alt="Perfil">
+                        </div>
+                        <div class="profile-details">
+                            <h3>Juan Vendedor</h3>
+                            <p>ID Vendedor: #VND001</p>
+                            <p>Fecha de ingreso: 15/03/2024</p>
+                            <p>Categoría: Vendedor Senior</p>
+                        </div>
+                    </div>
+
+                    <div class="profile-form">
+                        <h3>Información Personal</h3>
+                        <div class="form-group">
+                            <label>Nombre Completo:</label>
+                            <input type="text" value="Juan Vendedor" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label>Email:</label>
+                            <input type="email" value="juan.vendedor@theboline.com" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label>Teléfono:</label>
+                            <input type="tel" value="(555) 123-4567" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label>Dirección:</label>
+                            <input type="text" value="123 Calle Principal, Ciudad" class="form-input">
+                        </div>
+                        <button class="btn btn-primary">Actualizar Perfil</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modal para Nueva Venta -->
+    <div id="saleModal">
+        <div class="sale-modal-content">
+            <div class="sale-modal-header">
+                <h2>Nueva Venta</h2>
+                <button class="sale-close-btn" onclick="closeSaleModal()">&times;</button>
+            </div>
+            <div class="sale-modal-body">
+            
+            <!-- Step indicators -->
+            <div class="sale-steps">
+                <div class="step active" id="step1">
+                    <span class="step-number">1</span>
+                    <span class="step-label">Producto</span>
+                </div>
+                <div class="step" id="step2">
+                    <span class="step-number">2</span>
+                    <span class="step-label">Pago</span>
+                </div>
+                <div class="step" id="step3">
+                    <span class="step-number">3</span>
+                    <span class="step-label">Boleta</span>
+                </div>
+            </div>
+
+            <!-- Step 1: Product Selection -->
+            <div id="saleStep1" class="sale-step active">
+                <h2>Nueva Venta - Seleccionar Producto</h2>
+                <form id="saleForm" class="sale-form">
+                    <div class="sale-form-group">
+                        <label>Cliente:</label>
+                        <select id="saleClient" required>
+                            <option value="">Seleccionar cliente</option>
+                            <option value="1">Juan Pérez</option>
+                            <option value="2">María García</option>
+                            <option value="3">Carlos López</option>
+                        </select>
+                    </div>
+                    <div class="sale-form-group">
+                        <label>Producto:</label>
+                        <select name="product" id="saleProduct" required>
+                            <option value="">Seleccionar producto</option>
+                            <!-- Los productos se cargarán dinámicamente -->
+                        </select>
+                    </div>
+                    <div class="sale-form-group">
+                        <label>Cantidad:</label>
+                        <input type="number" min="1" value="1" id="saleQuantity" required>
+                    </div>
+                    <div class="sale-form-group">
+                        <label>Descuento (%):</label>
+                        <input type="number" min="0" max="100" value="0" id="saleDiscount">
+                    </div>
+                </form>
+                <div class="sale-modal-footer">
+                    <button type="button" class="sale-btn sale-btn-secondary" onclick="closeSaleModal()">Cancelar</button>
+                    <button type="button" class="sale-btn sale-btn-primary" onclick="continuarPago()">Continuar con Pago</button>
+                </div>
+            </div>
+
+            <!-- Step 2: Payment Method -->
+            <div id="saleStep2" class="sale-step">
+                <h2>Seleccionar Método de Pago</h2>
+                <div class="payment-summary">
+                    <div class="sale-summary">
+                        <h3>Resumen de Venta</h3>
+                        <div class="summary-details">
+                            <p><strong>Cliente:</strong> <span id="summaryClient"></span></p>
+                            <p><strong>Producto:</strong> <span id="summaryProduct"></span></p>
+                            <p><strong>Cantidad:</strong> <span id="summaryQuantity"></span></p>
+                            <p><strong>Precio unitario:</strong> <span id="summaryPrice"></span></p>
+                            <p><strong>Descuento:</strong> <span id="summaryDiscount"></span></p>
+                            <hr>
+                            <p class="total-amount"><strong>Total a pagar: <span id="summaryTotal"></span></strong></p>
+                        </div>
+                    </div>
+                    
+                    <div class="payment-methods">
+                        <h3>Método de Pago</h3>
+                    <div class="sale-payment-options">
+                        <div class="sale-payment-option" onclick="seleccionarMetodoPago('Efectivo')">
+                            <div class="payment-icon">💵</div>
+                            <h4>Efectivo</h4>
+                            <p>Pago en efectivo</p>
+                        </div>
+                        <div class="sale-payment-option" onclick="seleccionarMetodoPago('Tarjeta de Débito')">
+                            <div class="payment-icon">💳</div>
+                            <h4>Tarjeta de Débito</h4>
+                            <p>Pago con tarjeta de débito</p>
+                        </div>
+                        <div class="sale-payment-option" onclick="seleccionarMetodoPago('Tarjeta de Crédito')">
+                            <div class="payment-icon">💎</div>
+                            <h4>Tarjeta de Crédito</h4>
+                            <p>Pago con tarjeta de crédito</p>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                <div class="sale-modal-footer">
+                    <button type="button" class="sale-btn sale-btn-secondary" onclick="regresarPaso1()">Regresar</button>
+                    <button type="button" class="sale-btn sale-btn-primary" id="processPaymentBtn" onclick="procesarPago()" disabled>Procesar Pago</button>
+                </div>
+            </div>
+
+            <!-- Step 3: Receipt -->
+            <div id="saleStep3" class="sale-step">
+                <h2>Boleta de Venta</h2>
+                <div class="receipt-container">
+                    <div class="receipt-header">
+                        <h3>THEBOLINE</h3>
+                        <p>Tienda de Moda</p>
+                        <p>Dirección: 123 Calle Principal, Ciudad</p>
+                        <p>Teléfono: (555) 123-4567</p>
+                        <hr>
+                    </div>
+                    
+                    <div class="receipt-details">
+                        <h4>BOLETA DE VENTA</h4>
+                        <div class="receipt-info">
+                            <p><strong>Nº Boleta:</strong> <span id="receiptSaleId"></span></p>
+                            <p><strong>Fecha:</strong> <span id="receiptDate"></span></p>
+                            <p><strong>Hora:</strong> <span id="receiptTime"></span></p>
+                            <p><strong>Vendedor:</strong> <span id="receiptSeller"></span></p>
+                            <p><strong>Cliente:</strong> <span id="receiptClient"></span></p>
+                        </div>
+                        <hr>
+                        
+                        <div class="receipt-items">
+                            <div class="receipt-item">
+                                <strong>Producto:</strong> <span id="receiptProduct"></span>
+                            </div>
+                            <div class="receipt-item">
+                                <strong>Cantidad:</strong> <span id="receiptQuantity"></span>
+                            </div>
+                            <div class="receipt-item">
+                                <strong>Precio Unit.:</strong> <span id="receiptUnitPrice"></span>
+                            </div>
+                            <div class="receipt-item">
+                                <strong>Subtotal:</strong> <span id="receiptSubtotal"></span>
+                            </div>
+                            <div class="receipt-item">
+                                <strong>Descuento:</strong> <span id="receiptDiscount"></span>
+                            </div>
+                            <div class="receipt-item">
+                                <strong>Desc. Aplicado:</strong> <span id="receiptDiscountAmount"></span>
+                            </div>
+                        </div>
+                        
+                        <div class="receipt-totals">
+                            <hr>
+                            <div class="total-line final-total">
+                                <span><strong>TOTAL:</strong></span>
+                                <span id="receiptTotal"></span>
+                            </div>
+                        </div>
+                        
+                        <div class="receipt-payment">
+                            <hr>
+                            <p><strong>Método de Pago:</strong> <span id="receiptPaymentMethod"></span></p>
+                            <p><strong>Comisión Vendedor:</strong> <span id="receiptCommission"></span></p>
+                        </div>
+                        
+                        <div class="receipt-footer">
+                            <hr>
+                            <p>¡Gracias por su compra!</p>
+                            <p>Conserve esta boleta para cambios y devoluciones</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="sale-modal-footer">
+                    <button type="button" class="sale-btn sale-btn-secondary" onclick="printReceipt()">🖨️ Imprimir</button>
+                    <button type="button" class="sale-btn sale-btn-info" onclick="saveReceipt()">💾 Guardar</button>
+                    <button type="button" class="sale-btn sale-btn-success" onclick="finalizarVenta()">✅ Finalizar Venta</button>
+                </div>
+            </div>
+            
+            </div>
+        </div>
+    </div>
+
+    <script src="js/common.js"></script>
+    <script src="js/vendedor.js"></script>
+</body>
+</html>

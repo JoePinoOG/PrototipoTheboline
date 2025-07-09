@@ -1,0 +1,1052 @@
+/* ===============================================
+   SELLER DASHBOARD STYLES
+   =============================================== */
+
+/* Sales Table Enhancements */
+.data-table td {
+    padding: 12px;
+    vertical-align: middle;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.data-table .btn {
+    padding: 4px 8px;
+    font-size: 11px;
+    margin-right: 5px;
+}
+
+.data-table .btn:last-child {
+    margin-right: 0;
+}
+
+/* Status badges */
+.status.active {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.status.pending {
+    background: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeaa7;
+}
+
+.status.cancelled {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* Section Controls */
+.section-controls {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+    align-items: center;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+}
+
+/* Products Grid */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+/* Seller Product Card Styles */
+.product-card.seller-view {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    border: 1px solid #E0E0E0;
+}
+
+.product-card.seller-view:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+}
+
+.product-card img {
+    width: 100%;
+    height: 200px;
+    max-width: 100%;
+    max-height: 200px;
+    object-fit: cover;
+    border-radius: 8px 8px 0 0;
+    transition: transform 0.3s ease;
+    background: #f8f9fa;
+    display: block;
+    min-height: 200px;
+}
+
+.product-card:hover img {
+    transform: scale(1.05);
+}
+
+.product-card img[src*="placeholder"] {
+    object-fit: contain;
+    background: #e9ecef;
+    border: 2px dashed #dee2e6;
+    color: #6c757d;
+}
+
+/* Product Info Section */
+.product-info {
+    padding: 15px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.product-info h3 {
+    color: #000000;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0 0 8px 0;
+    line-height: 1.3;
+}
+
+.product-price {
+    font-size: 18px;
+    font-weight: bold;
+    color: #000000;
+    margin: 0;
+}
+
+.product-commission {
+    font-size: 14px;
+    color: #28a745;
+    font-weight: 600;
+    margin: 0;
+    background: #f8f9fa;
+    padding: 4px 8px;
+    border-radius: 4px;
+    display: inline-block;
+    width: fit-content;
+}
+
+.product-stock {
+    font-size: 14px;
+    color: #666666;
+    margin: 0;
+}
+
+.product-stock[class*="0 unidades"] {
+    color: #dc3545;
+    font-weight: 600;
+}
+
+.product-category {
+    font-size: 12px;
+    color: #666666;
+    font-style: italic;
+    background: #f8f9fa;
+    padding: 2px 8px;
+    border-radius: 12px;
+    display: inline-block;
+    width: fit-content;
+    margin: 0;
+}
+
+/* Product Sizes */
+.product-sizes {
+    margin-top: 8px;
+    font-size: 12px;
+    color: #666666;
+}
+
+.size-tag {
+    display: inline-block;
+    background: #e9ecef;
+    color: #495057;
+    padding: 2px 6px;
+    border-radius: 3px;
+    margin-right: 4px;
+    font-size: 10px;
+    font-weight: 500;
+}
+
+/* Product Actions */
+.product-actions {
+    padding: 15px;
+    background: #f8f9fa;
+    border-top: 1px solid #e9ecef;
+    display: flex;
+    gap: 10px;
+}
+
+/* Profile Section Styles */
+.profile-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.profile-info {
+    background: white;
+    border-radius: 12px;
+    padding: 30px;
+    border: 2px solid #e9ecef;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    height: fit-content;
+}
+
+.profile-info:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+}
+
+.profile-avatar {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.profile-avatar img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #FFD700;
+    transition: all 0.3s ease;
+}
+
+.profile-avatar img:hover {
+    border-color: #FFA500;
+    transform: scale(1.05);
+}
+
+.profile-details {
+    text-align: center;
+}
+
+.profile-details h3 {
+    color: #000000;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #FFD700;
+    padding-bottom: 10px;
+}
+
+.profile-details p {
+    color: #666666;
+    font-size: 14px;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.profile-details p strong {
+    color: #000000;
+}
+
+.profile-form {
+    background: white;
+    border-radius: 12px;
+    padding: 30px;
+    border: 2px solid #e9ecef;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.profile-form:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+}
+
+.profile-form h3 {
+    color: #000000;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 25px;
+    border-bottom: 2px solid #FFD700;
+    padding-bottom: 10px;
+}
+
+.profile-form .form-group {
+    margin-bottom: 20px;
+}
+
+.profile-form .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #333333;
+    font-size: 14px;
+}
+
+.profile-form .form-group:last-of-type {
+    margin-bottom: 0;
+}
+
+.profile-form .btn {
+    margin-top: 20px;
+    padding: 12px 30px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.profile-form .btn-primary {
+    background: #000000;
+    color: #FFFFFF;
+    border: 2px solid #000000;
+}
+
+.profile-form .btn-primary:hover {
+    background: #333333;
+    border-color: #333333;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Sales Modal Styles */
+.sale-modal-content {
+    max-width: 800px;
+}
+
+.sale-steps {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+    padding: 20px 0;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.step {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    margin: 0 10px;
+    border-radius: 25px;
+    background: #f8f9fa;
+    color: #6c757d;
+    transition: all 0.3s ease;
+}
+
+.step.active {
+    background: #FFD700;
+    color: #000000;
+    font-weight: bold;
+}
+
+.step-number {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #e9ecef;
+    color: #6c757d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.step.active .step-number {
+    background: #000000;
+    color: #FFD700;
+}
+
+.sale-step {
+    display: none;
+}
+
+.sale-step.active {
+    display: block;
+}
+
+.form-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: flex-end;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #e9ecef;
+}
+
+/* Payment Modal Styles */
+.payment-summary {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.sale-summary {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 4px solid #FFD700;
+}
+
+.summary-details p {
+    margin: 8px 0;
+    color: #000;
+}
+
+.total-amount {
+    font-size: 1.2em;
+    color: #000;
+    background-color: #FFD700;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.payment-methods h3 {
+    margin-bottom: 15px;
+    color: #000;
+}
+
+.payment-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+}
+
+.payment-option {
+    background-color: #ffffff;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.payment-option:hover {
+    border-color: #FFD700;
+    background-color: #fffbf0;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+}
+
+.payment-option.selected {
+    border-color: #FFD700;
+    background-color: #FFD700;
+    color: #000;
+}
+
+.payment-icon {
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+.payment-option h4 {
+    margin: 10px 0 5px 0;
+    color: #000;
+}
+
+.payment-option p {
+    margin: 0;
+    color: #666;
+    font-size: 0.9em;
+}
+
+.payment-option.selected p {
+    color: #000;
+}
+
+/* Receipt Modal Styles */
+.receipt-modal {
+    max-width: 450px;
+    padding: 20px;
+}
+
+.receipt-container {
+    background-color: #ffffff;
+    color: #000;
+    font-family: 'Courier New', monospace;
+    line-height: 1.4;
+}
+
+.receipt-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.receipt-header h3 {
+    margin: 0;
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #000;
+}
+
+.receipt-header p {
+    margin: 5px 0;
+    font-size: 0.9em;
+    color: #000;
+}
+
+.receipt-details h4 {
+    text-align: center;
+    margin: 20px 0 15px 0;
+    color: #000;
+    font-size: 1.2em;
+}
+
+.receipt-info {
+    margin-bottom: 15px;
+}
+
+.receipt-info p {
+    margin: 5px 0;
+    color: #000;
+    font-size: 0.9em;
+}
+
+.receipt-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+}
+
+.receipt-table th,
+.receipt-table td {
+    padding: 8px 4px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    font-size: 0.85em;
+    color: #000;
+}
+
+.receipt-table th {
+    background-color: #f8f9fa;
+    font-weight: bold;
+}
+
+.receipt-totals {
+    margin-top: 15px;
+}
+
+.total-line {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 0;
+    font-size: 0.9em;
+    color: #000;
+}
+
+.final-total {
+    font-size: 1.1em;
+    font-weight: bold;
+    background-color: #FFD700;
+    padding: 8px;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+.receipt-payment {
+    margin-top: 15px;
+}
+
+.receipt-payment p {
+    margin: 5px 0;
+    font-size: 0.9em;
+    color: #000;
+}
+
+.receipt-footer {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.receipt-footer p {
+    margin: 5px 0;
+    font-size: 0.85em;
+    color: #666;
+}
+
+.receipt-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    gap: 10px;
+}
+
+.receipt-actions .btn {
+    flex: 1;
+    padding: 10px;
+    font-size: 0.9em;
+}
+
+/* ===============================================
+   MODAL DE VENTA VENDEDOR - ESTILOS ESPECÍFICOS
+   =============================================== */
+
+/* Modal de venta overlay */
+#saleModal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+}
+
+/* Contenedor del modal de venta */
+.sale-modal-content {
+    background-color: #ffffff;
+    margin: 2% auto;
+    padding: 0;
+    border-radius: 12px;
+    width: 95%;
+    max-width: 900px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    animation: saleModalSlideIn 0.3s ease-out;
+}
+
+@keyframes saleModalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Header del modal de venta */
+.sale-modal-header {
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    color: #000000;
+    padding: 20px;
+    border-radius: 12px 12px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #000000;
+}
+
+.sale-modal-header h2 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.sale-close-btn {
+    background: none;
+    border: none;
+    font-size: 28px;
+    font-weight: bold;
+    color: #000000;
+    cursor: pointer;
+    padding: 0;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.sale-close-btn:hover {
+    background: rgba(0, 0, 0, 0.1);
+    transform: scale(1.1);
+}
+
+/* Contenido del modal de venta */
+.sale-modal-body {
+    padding: 30px;
+}
+
+/* Pasos del modal de venta */
+.sale-step {
+    display: none;
+    animation: saleStepFadeIn 0.3s ease-in-out;
+}
+
+.sale-step.active {
+    display: block;
+}
+
+@keyframes saleStepFadeIn {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Formulario de venta */
+.sale-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.sale-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.sale-form-group label {
+    font-weight: 600;
+    color: #333;
+    font-size: 14px;
+}
+
+.sale-form-group input,
+.sale-form-group select {
+    padding: 12px;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    font-size: 14px;
+    background: #ffffff;
+    color: #000000;
+    transition: all 0.3s ease;
+}
+
+.sale-form-group input:focus,
+.sale-form-group select:focus {
+    outline: none;
+    border-color: #FFD700;
+    box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.2);
+    background: #FFFACD;
+}
+
+/* Resumen de venta */
+.sale-summary {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    border: 2px solid #e9ecef;
+    margin-bottom: 20px;
+}
+
+.sale-summary h3 {
+    color: #000000;
+    margin-bottom: 15px;
+    font-size: 18px;
+    border-bottom: 2px solid #FFD700;
+    padding-bottom: 8px;
+}
+
+.sale-summary-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.sale-summary-item:last-child {
+    border-bottom: none;
+    font-weight: bold;
+    font-size: 16px;
+    color: #000000;
+}
+
+.sale-summary-item span:first-child {
+    color: #666;
+}
+
+.sale-summary-item span:last-child {
+    color: #000000;
+    font-weight: 600;
+}
+
+/* Opciones de pago */
+.sale-payment-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.sale-payment-option {
+    padding: 20px;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: #ffffff;
+}
+
+.sale-payment-option:hover {
+    border-color: #FFD700;
+    background: #FFFACD;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+}
+
+.sale-payment-option.selected {
+    border-color: #FFD700;
+    background: #FFD700;
+    color: #000000;
+    font-weight: bold;
+}
+
+.sale-payment-option i {
+    font-size: 24px;
+    margin-bottom: 10px;
+    display: block;
+}
+
+/* Boleta de venta */
+.sale-receipt {
+    background: #ffffff;
+    border: 2px solid #000000;
+    padding: 30px;
+    border-radius: 8px;
+    font-family: 'Courier New', monospace;
+    margin-bottom: 20px;
+}
+
+.sale-receipt-header {
+    text-align: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #000000;
+}
+
+.sale-receipt-header h3 {
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.sale-receipt-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.sale-receipt-section {
+    margin-bottom: 15px;
+}
+
+.sale-receipt-section h4 {
+    font-size: 14px;
+    margin-bottom: 8px;
+    color: #000000;
+    border-bottom: 1px solid #000000;
+    padding-bottom: 4px;
+}
+
+.sale-receipt-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+    border-bottom: 1px dotted #ccc;
+}
+
+.sale-receipt-item:last-child {
+    border-bottom: none;
+}
+
+.sale-receipt-total {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 2px solid #000000;
+    text-align: right;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Botones del modal de venta */
+.sale-modal-footer {
+    padding: 20px 30px;
+    background: #f8f9fa;
+    border-radius: 0 0 12px 12px;
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.sale-btn {
+    padding: 12px 24px;
+    border: 2px solid #000000;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.sale-btn-primary {
+    background: #000000;
+    color: #FFFFFF;
+}
+
+.sale-btn-primary:hover {
+    background: #333333;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.sale-btn-info {
+    background: #17a2b8;
+    color: #ffffff;
+    border: 2px solid #17a2b8;
+}
+
+.sale-btn-info:hover {
+    background: #138496;
+    border-color: #138496;
+}
+
+.sale-btn-secondary {
+    background: #FFFFFF;
+    color: #000000;
+    border: 2px solid #E0E0E0;
+}
+
+.sale-btn-secondary:hover {
+    background: #F5F5F5;
+    border-color: #CCCCCC;
+}
+
+.sale-btn-success {
+    background: #28a745;
+    color: #ffffff;
+    border: 2px solid #28a745;
+}
+
+.sale-btn-success:hover {
+    background: #218838;
+    border-color: #218838;
+}
+
+/* Responsive para modal de venta */
+@media (max-width: 768px) {
+    .sale-modal-content {
+        width: 95%;
+        margin: 5% auto;
+    }
+    
+    .sale-form {
+        grid-template-columns: 1fr;
+    }
+    
+    .sale-payment-options {
+        grid-template-columns: 1fr;
+    }
+    
+    .sale-receipt-info {
+        grid-template-columns: 1fr;
+    }
+    
+    .sale-modal-footer {
+        flex-direction: column;
+    }
+    
+    .sale-btn {
+        justify-content: center;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .profile-container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .profile-info,
+    .profile-form {
+        padding: 20px;
+    }
+    
+    .profile-avatar img {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .profile-details h3 {
+        font-size: 20px;
+    }
+    
+    .profile-form h3 {
+        font-size: 18px;
+    }
+    
+    .payment-options {
+        grid-template-columns: 1fr;
+    }
+    
+    .payment-summary {
+        gap: 15px;
+    }
+    
+    .receipt-actions {
+        flex-direction: column;
+    }
+    
+    .receipt-actions .btn {
+        margin-bottom: 10px;
+    }
+    
+    .products-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .section-controls {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-info,
+    .profile-form {
+        padding: 15px;
+    }
+    
+    .profile-avatar img {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .profile-details p {
+        flex-direction: column;
+        text-align: left;
+        gap: 5px;
+    }
+    
+    .sale-steps {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .step {
+        margin: 0;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+    }
+}

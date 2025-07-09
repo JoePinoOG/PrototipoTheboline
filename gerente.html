@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theboline - Panel Gerente</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/gerente.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Header -->
+        <header class="header">
+            <h1>Theboline - Panel Gerencial</h1>
+            <div class="user-info">
+                <span>Bienvenido, Gerente</span>
+                <button onclick="logout()" class="logout-btn">Cerrar Sesión</button>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="sidebar">
+            <ul>
+                <li><a href="#" onclick="showSection('dashboard')" class="nav-link active">Dashboard Ejecutivo</a></li>
+                <li><a href="#" onclick="showSection('vendedores')" class="nav-link">Gestión de Vendedores</a></li>
+                <li><a href="#" onclick="showSection('inventario')" class="nav-link">Gestión de Inventario</a></li>
+                <li><a href="#" onclick="showSection('reportes')" class="nav-link">Reportes Gerenciales</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Dashboard Ejecutivo -->
+            <section id="dashboard" class="content-section active">
+                <h2>Dashboard Ejecutivo</h2>
+                
+                <!-- KPIs Principales -->
+                <div class="executive-stats">
+                    <div class="executive-card revenue">
+                        <div class="card-header">
+                            <h3>Ingresos Totales</h3>
+                            <span class="trend positive">+12.5%</span>
+                        </div>
+                        <div class="card-value">$45.890.000</div>
+                        <div class="card-subtitle">Este mes</div>
+                    </div>
+                    
+                    <div class="executive-card sales">
+                        <div class="card-header">
+                            <h3>Ventas Realizadas</h3>
+                            <span class="trend positive">+8.3%</span>
+                        </div>
+                        <div class="card-value">1,247</div>
+                        <div class="card-subtitle">Transacciones</div>
+                    </div>
+                    
+                    <div class="executive-card team">
+                        <div class="card-header">
+                            <h3>Rendimiento Equipo</h3>
+                            <span class="trend positive">+5.7%</span>
+                        </div>
+                        <div class="card-value">87%</div>
+                        <div class="card-subtitle">Cumplimiento metas</div>
+                    </div>
+                    
+                    <div class="executive-card customers">
+                        <div class="card-header">
+                            <h3>Clientes Activos</h3>
+                            <span class="trend positive">+15.2%</span>
+                        </div>
+                        <div class="card-value">3,456</div>
+                        <div class="card-subtitle">Base de clientes</div>
+                    </div>
+                </div>
+
+                <!-- Gráficos y Métricas -->
+                <div class="dashboard-grid">
+                    <div class="chart-container">
+                        <h3>Ventas por Mes</h3>
+                        <div class="chart-placeholder">
+                            <canvas id="salesChart" width="400" height="200"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="top-performers">
+                        <h3>Top Vendedores</h3>
+                        <div class="performers-list">
+                            <div class="performer-item">
+                                <div class="performer-rank">1</div>
+                                <div class="performer-info">
+                                    <span class="performer-name">Juan Pérez</span>
+                                    <span class="performer-sales">$8.450.000</span>
+                                </div>
+                                <div class="performer-badge gold">🏆</div>
+                            </div>
+                            <div class="performer-item">
+                                <div class="performer-rank">2</div>
+                                <div class="performer-info">
+                                    <span class="performer-name">María García</span>
+                                    <span class="performer-sales">$7.890.000</span>
+                                </div>
+                                <div class="performer-badge silver">🥈</div>
+                            </div>
+                            <div class="performer-item">
+                                <div class="performer-rank">3</div>
+                                <div class="performer-info">
+                                    <span class="performer-name">Carlos López</span>
+                                    <span class="performer-sales">$6.230.000</span>
+                                </div>
+                                <div class="performer-badge bronze">🥉</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Alertas y Notificaciones -->
+                <div class="alerts-section">
+                    <h3>Alertas y Notificaciones</h3>
+                    <div class="alerts-grid">
+                        <div class="alert-item warning">
+                            <div class="alert-icon">⚠️</div>
+                            <div class="alert-content">
+                                <h4>Stock Bajo</h4>
+                                <p>5 productos con stock crítico</p>
+                            </div>
+                            <button class="alert-action">Ver Detalles</button>
+                        </div>
+                        <div class="alert-item success">
+                            <div class="alert-icon">✅</div>
+                            <div class="alert-content">
+                                <h4>Meta Alcanzada</h4>
+                                <p>Objetivo mensual cumplido al 105%</p>
+                            </div>
+                            <button class="alert-action">Ver Reporte</button>
+                        </div>
+                        <div class="alert-item info">
+                            <div class="alert-icon">📊</div>
+                            <div class="alert-content">
+                                <h4>Reporte Disponible</h4>
+                                <p>Análisis semanal listo para revisión</p>
+                            </div>
+                            <button class="alert-action">Descargar</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Gestión de Vendedores -->
+            <section id="vendedores" class="content-section">
+                <h2>Gestión de Vendedores</h2>
+                
+                <div class="section-controls">
+                    <button class="btn btn-primary" onclick="openAddSellerModal()">Agregar Vendedor</button>
+                    <input type="search" placeholder="Buscar vendedor..." class="search-input">
+                    <select class="filter-select">
+                        <option>Todos los vendedores</option>
+                        <option>Activos</option>
+                        <option>Inactivos</option>
+                        <option>En capacitación</option>
+                    </select>
+                </div>
+
+                <div class="sellers-grid">
+                    <div class="seller-card">
+                        <div class="seller-header">
+                            <img src="https://via.placeholder.com/60x60" alt="Vendedor" class="seller-avatar">
+                            <div class="seller-basic-info">
+                                <h3>Juan Pérez</h3>
+                                <span class="seller-id">ID: VND001</span>
+                                <span class="seller-status active">Activo</span>
+                            </div>
+                        </div>
+                        
+                        <div class="seller-stats">
+                            <div class="stat-item">
+                                <span class="stat-label">Ventas del Mes</span>
+                                <span class="stat-value">$8.450.000</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Meta Cumplida</span>
+                                <span class="stat-value">112%</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Clientes Atendidos</span>
+                                <span class="stat-value">89</span>
+                            </div>
+                        </div>
+                        
+                        <div class="seller-actions">
+                            <button class="btn btn-small" onclick="viewSellerDetails('VND001')">Ver Detalles</button>
+                            <button class="btn btn-small" onclick="editSeller('VND001')">Editar</button>
+                            <button class="btn btn-small btn-secondary" onclick="viewSellerReports('VND001')">Reportes</button>
+                        </div>
+                    </div>
+
+                    <div class="seller-card">
+                        <div class="seller-header">
+                            <img src="https://via.placeholder.com/60x60" alt="Vendedor" class="seller-avatar">
+                            <div class="seller-basic-info">
+                                <h3>María García</h3>
+                                <span class="seller-id">ID: VND002</span>
+                                <span class="seller-status active">Activo</span>
+                            </div>
+                        </div>
+                        
+                        <div class="seller-stats">
+                            <div class="stat-item">
+                                <span class="stat-label">Ventas del Mes</span>
+                                <span class="stat-value">$7.890.000</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Meta Cumplida</span>
+                                <span class="stat-value">98%</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Clientes Atendidos</span>
+                                <span class="stat-value">76</span>
+                            </div>
+                        </div>
+                        
+                        <div class="seller-actions">
+                            <button class="btn btn-small" onclick="viewSellerDetails('VND002')">Ver Detalles</button>
+                            <button class="btn btn-small" onclick="editSeller('VND002')">Editar</button>
+                            <button class="btn btn-small btn-secondary" onclick="viewSellerReports('VND002')">Reportes</button>
+                        </div>
+                    </div>
+
+                    <div class="seller-card">
+                        <div class="seller-header">
+                            <img src="https://via.placeholder.com/60x60" alt="Vendedor" class="seller-avatar">
+                            <div class="seller-basic-info">
+                                <h3>Carlos López</h3>
+                                <span class="seller-id">ID: VND003</span>
+                                <span class="seller-status training">En Capacitación</span>
+                            </div>
+                        </div>
+                        
+                        <div class="seller-stats">
+                            <div class="stat-item">
+                                <span class="stat-label">Ventas del Mes</span>
+                                <span class="stat-value">$6.230.000</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Meta Cumplida</span>
+                                <span class="stat-value">78%</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Clientes Atendidos</span>
+                                <span class="stat-value">54</span>
+                            </div>
+                        </div>
+                        
+                        <div class="seller-actions">
+                            <button class="btn btn-small" onclick="viewSellerDetails('VND003')">Ver Detalles</button>
+                            <button class="btn btn-small" onclick="editSeller('VND003')">Editar</button>
+                            <button class="btn btn-small btn-secondary" onclick="viewSellerReports('VND003')">Reportes</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Gestión de Inventario -->
+            <section id="inventario" class="content-section">
+                <h2>Gestión de Inventario</h2>
+                
+                <div class="inventory-controls">
+                    <div class="search-container">
+                        <input type="text" placeholder="Buscar producto..." class="search-input">
+                        <button class="search-btn">🔍</button>
+                    </div>
+                    <div class="filter-container">
+                        <select class="filter-select" onchange="filterStockProducts(this.value)">
+                            <option value="todos">Todos los productos</option>
+                            <option value="stock-critico">Stock crítico (≤5)</option>
+                            <option value="stock-bajo">Stock bajo (≤10)</option>
+                            <option value="stock-normal">Stock normal (>10)</option>
+                        </select>
+                        <select class="filter-select" onchange="filterStockByCategory(this.value)">
+                            <option value="todas">Todas las categorías</option>
+                            <option value="zapatillas">Zapatillas</option>
+                            <option value="ropa">Ropa</option>
+                            <option value="accesorios">Accesorios</option>
+                        </select>
+                    </div>
+                    <div class="inventory-actions">
+                        <button class="btn btn-primary" onclick="requestBulkStock()">Solicitar Stock Masivo</button>
+                        <button class="btn btn-secondary" onclick="showStockRequestsSummary()">Ver Solicitudes</button>
+                    </div>
+                </div>
+
+                <div class="inventory-summary">
+                    <div class="summary-card">
+                        <h3>Resumen de Inventario</h3>
+                        <div class="summary-stats">
+                            <div class="summary-stat">
+                                <span class="stat-label">Total Productos</span>
+                                <span class="stat-value" id="totalProducts">0</span>
+                            </div>
+                            <div class="summary-stat critical">
+                                <span class="stat-label">Stock Crítico</span>
+                                <span class="stat-value" id="criticalStock">0</span>
+                            </div>
+                            <div class="summary-stat warning">
+                                <span class="stat-label">Stock Bajo</span>
+                                <span class="stat-value" id="lowStock">0</span>
+                            </div>
+                            <div class="summary-stat success">
+                                <span class="stat-label">Stock Normal</span>
+                                <span class="stat-value" id="normalStock">0</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="products-grid" id="stockProducts">
+                    <!-- Los productos se cargarán dinámicamente -->
+                </div>
+            </section>
+
+            <!-- Reportes Gerenciales -->
+            <section id="reportes" class="content-section">
+                <h2>Reportes Gerenciales</h2>
+                
+                <div class="reports-controls">
+                    <select class="filter-select">
+                        <option>Último mes</option>
+                        <option>Últimos 3 meses</option>
+                        <option>Último semestre</option>
+                        <option>Último año</option>
+                    </select>
+                    <button class="btn btn-primary" onclick="generateExecutiveReport()">Generar Reporte Ejecutivo</button>
+                </div>
+
+                <div class="reports-grid">
+                    <div class="report-card executive">
+                        <div class="report-header">
+                            <h3>Reporte Ejecutivo</h3>
+                            <span class="report-period">Julio 2025</span>
+                        </div>
+                        <div class="report-content">
+                            <div class="report-stats">
+                                <div class="report-stat">
+                                    <span class="stat-label">Ingresos Totales</span>
+                                    <span class="stat-value">$45.890.000</span>
+                                    <span class="stat-change positive">+12.5%</span>
+                                </div>
+                                <div class="report-stat">
+                                    <span class="stat-label">Margen de Ganancia</span>
+                                    <span class="stat-value">34.7%</span>
+                                    <span class="stat-change positive">+2.3%</span>
+                                </div>
+                                <div class="report-stat">
+                                    <span class="stat-label">Rotación de Inventario</span>
+                                    <span class="stat-value">8.5x</span>
+                                    <span class="stat-change positive">+0.7x</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="report-actions">
+                            <button class="btn btn-small" onclick="viewReport('executive')">Ver Completo</button>
+                            <button class="btn btn-small btn-secondary" onclick="downloadReport('executive')">Descargar PDF</button>
+                        </div>
+                    </div>
+
+                    <div class="report-card sales">
+                        <div class="report-header">
+                            <h3>Análisis de Ventas</h3>
+                            <span class="report-period">Julio 2025</span>
+                        </div>
+                        <div class="report-content">
+                            <div class="report-stats">
+                                <div class="report-stat">
+                                    <span class="stat-label">Ventas por Vendedor</span>
+                                    <span class="stat-value">Promedio: $7.2M</span>
+                                </div>
+                                <div class="report-stat">
+                                    <span class="stat-label">Producto Más Vendido</span>
+                                    <span class="stat-value">Zapatillas Nike</span>
+                                </div>
+                                <div class="report-stat">
+                                    <span class="stat-label">Ticket Promedio</span>
+                                    <span class="stat-value">$89.450</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="report-actions">
+                            <button class="btn btn-small" onclick="viewReport('sales')">Ver Completo</button>
+                            <button class="btn btn-small btn-secondary" onclick="downloadReport('sales')">Descargar PDF</button>
+                        </div>
+                    </div>
+
+                    <div class="report-card inventory">
+                        <div class="report-header">
+                            <h3>Reporte de Inventario</h3>
+                            <span class="report-period">Julio 2025</span>
+                        </div>
+                        <div class="report-content">
+                            <div class="report-stats">
+                                <div class="report-stat">
+                                    <span class="stat-label">Productos en Stock</span>
+                                    <span class="stat-value">1,247 unidades</span>
+                                </div>
+                                <div class="report-stat">
+                                    <span class="stat-label">Valor del Inventario</span>
+                                    <span class="stat-value">$67.890.000</span>
+                                </div>
+                                <div class="report-stat">
+                                    <span class="stat-label">Productos Críticos</span>
+                                    <span class="stat-value">5 productos</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="report-actions">
+                            <button class="btn btn-small" onclick="viewReport('inventory')">Ver Completo</button>
+                            <button class="btn btn-small btn-secondary" onclick="downloadReport('inventory')">Descargar PDF</button>
+                        </div>
+                    </div>
+
+                    <div class="report-card performance">
+                        <div class="report-header">
+                            <h3>Rendimiento del Equipo</h3>
+                            <span class="report-period">Julio 2025</span>
+                        </div>
+                        <div class="report-content">
+                            <div class="report-stats">
+                                <div class="report-stat">
+                                    <span class="stat-label">Cumplimiento de Metas</span>
+                                    <span class="stat-value">87%</span>
+                                </div>
+                                <div class="report-stat">
+                                    <span class="stat-label">Satisfacción Cliente</span>
+                                    <span class="stat-value">4.7/5</span>
+                                </div>
+                                <div class="report-stat">
+                                    <span class="stat-label">Tiempo Promedio Venta</span>
+                                    <span class="stat-value">12 min</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="report-actions">
+                            <button class="btn btn-small" onclick="viewReport('performance')">Ver Completo</button>
+                            <button class="btn btn-small btn-secondary" onclick="downloadReport('performance')">Descargar PDF</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="js/common.js"></script>
+    <script src="js/gerente.js"></script>
+</body>
+</html>
